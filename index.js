@@ -5,6 +5,8 @@ var xml2js = require('xml2js');
 var inflect = require('inflect');
 
 var XERO_BASE_URL = 'https://api.xero.com';
+
+// Set the default Xero Api URL to be the accounting API URL
 var XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
 
 function Xero(key, secret, rsa_key, showXmlAttributes, customHeaders) {
@@ -49,6 +51,15 @@ Xero.prototype.call = function(method, path, body, callback) {
         });
     };
     return self.oa._performSecureRequest(self.key, self.secret, method, XERO_API_URL + path, null, post_body, content_type, callback ? process : null);
+}
+
+Xero.prototype.callPayroll    = function (method, path, body, callback) {
+    XERO_API_URL = XERO_BASE_URL + '/payroll.xro/1.0';
+    Xero.prototype.call.call(this, method, path, body, callback);
+}
+Xero.prototype.callAccounting = function (method, path, body, callback) {
+    XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
+    Xero.prototype.call.call(this, method, path, body, callback);
 }
 
 module.exports = Xero;
