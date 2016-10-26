@@ -11,7 +11,7 @@
 var Xero = require('xero');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
-xero.call('GET', '/Users', null, function(err, json) {
+xero.callAccounting('GET', '/Users', null, function(err, json) {
         if (err) {
             log.error(err);
             return res.json(400, {error: 'Unable to contact Xero'});
@@ -55,7 +55,7 @@ request = [{
 }, {
     Name: 'Name2'
 }];
-xero.call('POST', '/Contacts?SummarizeErrors=false', request, function(err, json) {
+xero.callAccounting('POST', '/Contacts?SummarizeErrors=false', request, function(err, json) {
         ...
     });
 ```
@@ -67,7 +67,7 @@ var fs = require('fs');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
 var invoiceId = 'invoice-identifier';
-var req = xero.call('GET', '/Invoices/' + invoiceId);
+var req = xero.callAccounting('GET', '/Invoices/' + invoiceId);
 
 req.setHeader('Accept', 'application/pdf');
 req.on('response', function(response) {
@@ -75,6 +75,21 @@ req.on('response', function(response) {
   response.pipe(file);
 });
 req.end();
+```
+
+### Using Payroll API
+### Request
+```javascript
+var Xero = require('xero');
+
+var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
+xero.callPayroll('GET', '/Users', null, function(err, json) {
+        if (err) {
+            log.error(err);
+            return res.json(400, {error: 'Unable to contact Xero'});
+        }
+        return res.json(200, json);
+    });
 ```
 
 ## Docs
