@@ -78,12 +78,12 @@ req.end();
 ```
 
 ### Using Payroll API
-### Request
+### Request a list of Timesheets
 ```javascript
 var Xero = require('xero');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
-xero.callPayroll('GET', '/Users', null, function(err, json) {
+xero.callPayroll('GET', '/Timesheets', null, function(err, json) {
         if (err) {
             log.error(err);
             return res.json(400, {error: 'Unable to contact Xero'});
