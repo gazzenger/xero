@@ -11,7 +11,7 @@
 var Xero = require('xero');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
-xero.callAccounting('GET', '/Users', null, function(err, json) {
+xero.call('GET', 'accounting','/Users', null, function(err, json) {
         if (err) {
             log.error(err);
             return res.json(400, {error: 'Unable to contact Xero'});
@@ -55,7 +55,7 @@ request = [{
 }, {
     Name: 'Name2'
 }];
-xero.callAccounting('POST', '/Contacts?SummarizeErrors=false', request, function(err, json) {
+xero.call('POST', 'accounting', '/Contacts?SummarizeErrors=false', request, function(err, json) {
         ...
     });
 ```
@@ -67,7 +67,7 @@ var fs = require('fs');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
 var invoiceId = 'invoice-identifier';
-var req = xero.callAccounting('GET', '/Invoices/' + invoiceId);
+var req = xero.call('GET', 'accounting', '/Invoices/' + invoiceId);
 
 req.setHeader('Accept', 'application/pdf');
 req.on('response', function(response) {
@@ -83,7 +83,7 @@ req.end();
 var Xero = require('xero');
 
 var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
-xero.callPayroll('GET', '/Timesheets', null, function(err, json) {
+xero.call('GET', 'payroll', '/Timesheets', null, function(err, json) {
         if (err) {
             log.error(err);
             return res.json(400, {error: 'Unable to contact Xero'});
@@ -91,6 +91,13 @@ xero.callPayroll('GET', '/Timesheets', null, function(err, json) {
         return res.json(200, json);
     });
 ```
+
+### Using Other APIs
+### Assets API
+`xero.call('GET', 'assets', ...`
+### Files API
+`xero.call('GET', 'files', ...`
+
 
 ## Docs
 http://developer.xero.com/api/

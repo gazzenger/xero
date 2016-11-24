@@ -22,9 +22,25 @@ function Xero(key, secret, rsa_key, showXmlAttributes, customHeaders) {
     }
 }
 
-Xero.prototype.call = function(method, path, body, callback) {
+Xero.prototype.call = function(method, endpoint, path, body, callback) {
     var self = this;
-
+    switch (endpoint) {
+        case 'accounting':
+            endpoint = '/api.xro/2.0';
+            break;
+        case 'payroll':
+            endpoint = '/payroll.xro/1.0';
+            break;
+        case 'assets':
+            endpoint = '/assets.xro/1.0';
+            break;
+        case 'files':
+            endpoint = '/files.xro/1.0';
+            break;
+        default:
+            endpoint = '/api.xro/2.0';
+    }
+    XERO_API_URL = XERO_BASE_URL + endpoint;
     var post_body = null;
     var content_type = null;
     if (method && method !== 'GET' && body) {
@@ -51,15 +67,6 @@ Xero.prototype.call = function(method, path, body, callback) {
         });
     };
     return self.oa._performSecureRequest(self.key, self.secret, method, XERO_API_URL + path, null, post_body, content_type, callback ? process : null);
-}
-
-Xero.prototype.callPayroll    = function (method, path, body, callback) {
-    XERO_API_URL = XERO_BASE_URL + '/payroll.xro/1.0';
-    Xero.prototype.call.call(this, method, path, body, callback);
-}
-Xero.prototype.callAccounting = function (method, path, body, callback) {
-    XERO_API_URL = XERO_BASE_URL + '/api.xro/2.0';
-    Xero.prototype.call.call(this, method, path, body, callback);
 }
 
 module.exports = Xero;
