@@ -48,7 +48,12 @@ Xero.prototype.call = function(method, endpoint, path, body, callback) {
             post_body = body;
         } else {
             var root = path.match(/([^\/\?]+)/)[1];
-            post_body = new EasyXml({rootElement: inflect.singularize(root), rootArray: root, manifest: true}).render(body);
+
+            if (path.search('PayItems') !== -1) {
+                post_body = new EasyXml({rootElement: root, rootArray: root, manifest: true}).render(body);
+            } else {
+                post_body = new EasyXml({rootElement: inflect.singularize(root), rootArray: root, manifest: true}).render(body);
+            }
             content_type = 'application/xml';
         }
     }
