@@ -7,23 +7,23 @@
     "xml2js": "0.4.4",
     "inflect": "0.3.0"
   },
-  "description": "Xero.com Node Library",
+  "description": "Xero.com Node Library for private applications",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:thallium205/xero.git"
+    "url": "git@github.com:gazzenger/xero.git"
   },
   "keywords": [
     "xero",
     "node",
     "nodejs"
   ],
-  "author": "thallium205 <https://github.com/thallium205>",
+  "author": "gazzenger <https://github.com/gazzenger>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "gitHead": "3ceec8036cd7bafb6949a709220aa6f4f367f710"
+  "gitHead": "68b5de2e176c1282d242b5348e2ea3124c14b03b"
 }
