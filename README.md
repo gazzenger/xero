@@ -102,4 +102,3 @@ xero.call('GET', 'payroll', '/Timesheets', null, function(err, json) {
 ## Docs
 http://developer.xero.com/api/
 
-Enjoy! - thallium205 <https://github.com/thallium205>
