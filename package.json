@@ -1,5 +1,5 @@
 {
-  "name": "xero",
+  "name": "xero-private",
   "version": "0.0.8",
   "dependencies": {
     "oauth": "0.9.12",
@@ -11,7 +11,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gazzenger/xero.git"
+    "url": "git@github.com:gazzenger/xero-private.git"
   },
   "keywords": [
     "xero",
@@ -25,5 +25,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "gitHead": "68b5de2e176c1282d242b5348e2ea3124c14b03b"
+  "bugs": {
+    "url": "https://github.com/gazzenger/xero/issues"
+  },
+  "homepage": "https://github.com/gazzenger/xero#readme"
 }
