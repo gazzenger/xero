@@ -1,6 +1,6 @@
 {
   "name": "xero-private",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "dependencies": {
     "oauth": "0.9.12",
     "easyxml": "1.0.0",
